@@ -6,15 +6,15 @@ In this paper, we develop a methodology to automatically classify claims using t
 
 ## Dependencies
 
-[Tensorflow](https://www.tensorflow.org)
-[NumPy](https://numpy.org)
-[scikit-learn](https://scikit-learn.org/stable/)
-[Matplotlib](https://matplotlib.org)
-[seaborn](https://seaborn.pydata.org)
-[pandas](https://pandas.pydata.org)
-[gensim](https://radimrehurek.com/gensim/)
-[itertools](https://docs.python.org/2/library/itertools.html)
-[functools](https://docs.python.org/3/library/functools.html)
+*[Tensorflow](https://www.tensorflow.org)
+*[NumPy](https://numpy.org)
+*[scikit-learn](https://scikit-learn.org/stable/)
+*[Matplotlib](https://matplotlib.org)
+*[seaborn](https://seaborn.pydata.org)
+*[pandas](https://pandas.pydata.org)
+*[gensim](https://radimrehurek.com/gensim/)
+*[itertools](https://docs.python.org/2/library/itertools.html)
+*[functools](https://docs.python.org/3/library/functools.html)
 
 
 
