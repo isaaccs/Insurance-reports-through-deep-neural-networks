@@ -20,7 +20,7 @@ In this paper, we develop a methodology to automatically classify claims using t
 
 ### Communication
 
-* [Mail](isaaccohensabban@gmail.com)
+* Mail: isaaccohensabban_at_gmail_dot_com
 
 
 ### Citation
