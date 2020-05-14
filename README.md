@@ -16,6 +16,19 @@ In this paper, we develop a methodology to automatically classify claims using t
 * [itertools](https://docs.python.org/2/library/itertools.html)
 * [functools](https://docs.python.org/3/library/functools.html)
 
+## Help and Support
+
+### Communication
+
+* [Mail](isaaccohensabban@gmail.com)
+
+
+### Citation
+
+If you use our algoritms in a scientific publication, we would appreciate citations: [bibtex](https://hal.archives-ouvertes.fr/hal-02570584v1/bibtex)
+
+
+
 
 
 
