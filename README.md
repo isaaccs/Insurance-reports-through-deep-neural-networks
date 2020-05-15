@@ -7,6 +7,15 @@ In this paper, we develop a methodology to automatically classify claims using t
 
 You can find a preprint [here](https://hal.archives-ouvertes.fr/hal-02570584)
 
+## Communications and Events
+
+We presented this paper to several conferences or working groups :
+
+* Working Group "Actuariat et Risques Contemporains" (GT ARC), Paris, France (5 April 2019)
+* 23rd "International Congress on Insurance: Mathematics and Economics", Munich, Germany (10-12 July 2019)
+* Online "International Conference in Actuarial science, data science and finance" - online (28-29 April 2020).
+* "Actuarial Colloquium Paris 2020" - Sections Virtual Colloquium - online (11-15 May 2020).
+
 ## Dependencies
 
 * [Tensorflow](https://www.tensorflow.org)
