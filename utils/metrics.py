@@ -1,8 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn import metrics
-from sklearn.metrics import f1_score, precision_score, jaccard_similarity_score,classification_report,confusion_matrix,roc_curve,auc,precision_recall_curve,roc_curve
+from sklearn.metrics import f1_score, precision_score, classification_report, confusion_matrix,\
+    roc_curve,auc,precision_recall_curve,roc_curve
 import pandas as pd
 import itertools
 
@@ -16,30 +15,37 @@ def top_n_accuracy(preds, truths, n):
             successes += 1
     return float(successes)/ts.shape[0]
  
- 
- 
-def prediction_evaluation(ytest,ypred, directory) :
-    metrix = ['Top1-Accuracy','Top2-Accuracy','Top3-Accuracy'
-              ,'Top4-Accuracy','Top5-Accuracy'
+
+def prediction_evaluation(ytest, ypred, directory) :
+    metrix = ['Top1-Accuracy',
+              'Top2-Accuracy',
+              'Top3-Accuracy',
+              'Top4-Accuracy',
+              'Top5-Accuracy'
              ]
-    scores = [top_n_accuracy(ypred, ytest,1),top_n_accuracy(ypred, ytest,2),top_n_accuracy(ypred, ytest,3)
-              ,top_n_accuracy(ypred, ytest,4),top_n_accuracy(ypred, ytest,5)
+    scores = [top_n_accuracy(ypred, ytest, 1),
+              top_n_accuracy(ypred, ytest, 2),
+              top_n_accuracy(ypred, ytest, 3),
+              top_n_accuracy(ypred, ytest, 4),
+              top_n_accuracy(ypred, ytest, 5)
              ]
     scores = np.round(scores,3)
- 
-    score = pd.DataFrame({'Metric':metrix,'Score':scores})
-   
+
+    score = pd.DataFrame({'Metric': metrix, 'Score': scores})
+
     fig = plt.figure(figsize=(8,8))
-    plt.plot(score.Metric, score.Score,marker='o',markersize=10,linestyle='--',color='darkgreen', label = 'Accuracy')
-    plt.plot(score.Metric, 1-score.Score,marker='^',markersize=10,linestyle='--',color='darkred', label = 'Error')
+    plt.plot(score.Metric, score.Score, marker='o', markersize=10,
+             linestyle='--', color='darkgreen', label='Accuracy')
+    plt.plot(score.Metric, 1-score.Score, marker='^', markersize=10,
+             linestyle='--', color='darkred', label='Error')
     plt.title("Performance along the output ranking")
     plt.xlabel("TopN-Accuracies")
     plt.ylabel("Accuracies")
     plt.legend()
-    fig.savefig(str(directory+'/TopN-Accuracies-Predictions.png'),dpi=300)
-   
-    return(score,fig)
-	
+    fig.savefig(str(directory+'/TopN-Accuracies-Predictions.png'), dpi=300)
+    return score, fig
+
+
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -72,8 +78,7 @@ def plot_confusion_matrix(cm, classes,
 
     plt.tight_layout()
     plt.ylabel('True label')
-    plt.xlabel('Predicted label')	
-	
+    plt.xlabel('Predicted label')
 
 
 def F1(target, predicted):
@@ -92,25 +97,30 @@ def F1(target, predicted):
     from sklearn.metrics import f1_score
     fpr, tpr, threshold = roc_curve(target, predicted)
     threshold = threshold[1:]
-    threshold = threshold[threshold!=0]
-    threshold = threshold[threshold!=1]
-    MC=[]
-    taille=len(threshold)
+    threshold = threshold[threshold != 0]
+    threshold = threshold[threshold != 1]
+    MC = []
+    taille = len(threshold)
     for i in range(taille):
         pred=predicted.copy()
-        pred[pred<threshold[i]]=0
-        pred[pred>=threshold[i]]=1
-        indic=f1_score(target,pred)
+        pred[pred< threshold[i]]=0
+        pred[pred >= threshold[i]]=1
+        indic = f1_score(target, pred)
         MC.append(indic)
-    importance={"seuil":threshold,"score":MC}
-    importance=pd.DataFrame(importance)
-    plt.plot(importance.score,importance.seuil,'b', label='F1 SCORE') # plotting t,b separately 
-    plt.ylabel('valeur')
-    plt.xlabel('taux')
-    plt.legend()
-    plt.show()
-    importance=importance.sort_values("score",ascending=False)
-    importance.index=range(0,len(importance))
+    importance = {"seuil": threshold, "score": MC}
+    importance = pd.DataFrame(importance)
+    importance = importance.sort_values("score", ascending=False)
+    importance.index = range(0, len(importance))
     roc_t = importance[:1]
-    print('F1 SCORE')
-    return list(roc_t['seuil']) 	
+    return list(roc_t['seuil'])
+
+def weighted_avg_and_std(values, weights):
+    """
+    Return the weighted average and standard deviation.
+
+    values, weights -- Numpy ndarrays with the same shape.
+    """
+    average = np.average(values, weights=weights, axis=0)
+    # Fast and numerically precise:
+    variance = np.average((values-average)**2, weights=weights,axis=0)
+    return average, np.sqrt(variance)
